@@ -24,7 +24,7 @@ jobs:
 
       - name: Mock AWS Authentication
         run: |
-          echo "Simulating AWS login via OIDC with role ${inputs.role-arn}"
+          echo "Simulating AWS login via OIDC with role ${{ inputs.role-arn }}"
           echo "AWS authentication successful!"
 
       - name: Setup Terraform
