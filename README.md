@@ -1,5 +1,8 @@
 # AWS Demo Project
 
+[![Dev Environment](https://github.com/cvitaa11/aws-demo/actions/workflows/terraform-dev.yml/badge.svg)](https://github.com/cvitaa11/aws-demo/actions/workflows/terraform-dev.yml)
+[![Prod Environment](https://github.com/cvitaa11/aws-demo/actions/workflows/terraform-prod.yml/badge.svg)](https://github.com/cvitaa11/aws-demo/actions/workflows/terraform-prod.yml)
+
 This repository serves as a reference implementation and demo project for AWS infrastructure using Infrastructure as Code (IaC) principles. It demonstrates best practices for setting up a scalable and modular AWS environment using Terraform.
 
 ## Purpose
