@@ -1,0 +1,41 @@
+title High Level Architecture
+
+// VPC and Subnets
+VPC [icon: aws-vpc] {
+  Public Subnet [icon: aws-subnet, color: green] {
+    ALB [icon: aws-elb, label: "Application Load Balancer"]
+    
+  }
+
+  Private Subnet [icon: aws-subnet, color: blue] {
+    EKS Cluster [icon: aws-eks] {
+      EKS Service [icon:aws-eks, label:"EKS Service"]
+      EKS Node Group [icon: aws-ec2-auto-scaling, label: "Node Group"]
+    }
+    Aurora MySQL [icon: aws-aurora, label: "Aurora MySQL"]
+    ElastiCache Redis [icon: aws-elasticache, label: "ElastiCache Redis"]
+    Aurora Backup [icon:aws-backup, label:"Aurora Backup"]
+    Aurora Read Replica [icon:aws-aurora, label:"Aurora Read Replica"]
+  }
+  CloudFront [icon: aws-cloudfront]
+}
+
+S3 [icon: aws-s3, label: "S3 Bucket"]
+S3 Replication [icon:aws-s3, label:"S3 Replica Bucket"]
+
+CloudWatch [icon: aws-cloudwatch]
+X-Ray [icon: aws-x-ray]
+ECR [icon:aws-ecr, label:"ECR"]
+
+// Connections
+CloudFront > ALB: route traffic
+ALB > EKS Cluster: forward requests
+EKS Cluster > Aurora MySQL: database access
+EKS Cluster > ElastiCache Redis: caching
+EKS Cluster > CloudWatch: monitoring
+EKS Cluster > X-Ray: tracing
+CloudFront <> S3: content delivery
+Aurora MySQL > Aurora Backup: database backup
+S3 > S3 Replication: cross region replication
+Aurora MySQL > Aurora Read Replica
+EKS Cluster > ECR: pull images
