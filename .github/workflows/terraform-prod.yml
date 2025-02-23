@@ -1,0 +1,16 @@
+name: Terraform Prod Environment
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "infra/environments/prod/**"
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    uses: ./.github/workflows/terraform-template.yml
+    with:
+      working-directory: infra/environments/prod
+      role-arn: "arn:aws:iam::123456789012:role/github-actions-prod"

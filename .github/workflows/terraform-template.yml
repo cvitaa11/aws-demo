@@ -1,0 +1,50 @@
+name: Terraform Operations Template
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        required: true
+        type: string
+      role-arn:
+        required: true
+        type: string
+
+jobs:
+  terraform:
+    name: Infrastructure Provisioning
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Mock AWS Authentication
+        run: |
+          echo "Simulating AWS login via OIDC with role ${inputs.role-arn}"
+          echo "AWS authentication successful!"
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~>1.10"
+
+      - name: Lint Terraform Code
+        run: terraform fmt -check -recursive
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Validate Terraform Code
+        run: terraform validate
+
+      - name: Plan Infrastructure
+        run: |
+          echo "Simulating Terraform plan operation"
+
+      - name: Apply Infrastructure Changes
+        run: |
+          echo "Simulating Terraform apply operation"
