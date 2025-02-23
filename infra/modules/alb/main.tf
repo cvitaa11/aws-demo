@@ -7,6 +7,7 @@ resource "aws_lb" "this" {
 
   enable_deletion_protection = var.environment == "prod"
   enable_http2               = true
+  drop_invalid_header_fields = true
 
   tags = {
     Name        = "${var.environment}-alb"
